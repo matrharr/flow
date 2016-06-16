@@ -1,0 +1,8 @@
+<h2>Add a new article</h2>
+
+<%= form_tag do %>
+  <input type='text' name='article[author]' placeholder='author'>
+  <input type='text' name='article[title]' placeholder='title'>
+  <input type='text' name='article[body]' placeholder='body'>
+  <input type='submit'>
+<% end %>
