@@ -1,15 +1,18 @@
 
   <h1><%= @article.title%></h1>
   <h5><%= @article.body %></h5>
-  <h5><%= @article.id %></h5>
 
+  <%= link_to 'edit', controller: "articles", action: "edit", id: @article %>
+  <%= link_to 'delete', @article, method: :delete,
+                                 data: { confirm: 'Are you sure?' } %>
+
+<h3>Comments</h3>
   <% @comments.each do |comment| %>
-  <p><%= comment.author %></p>
-  <h4><%= comment.body %></h4>
+  <p><%= comment.body %></p>
+  <p>by <%= comment.author %></p>
   <% end %>
 
-
-
+<h2>Leave a comment</h2>
 <%= form_tag( "/articles/#{@article.id }/comments", method:'post') do %>
   <input type='hidden' name='comment[article_id]' value=<%= @article.id %>>
   <input type='text' name='comment[author]' placeholder='author'>
