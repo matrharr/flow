@@ -1,0 +1,17 @@
+
+  <h1><%= @article.title%></h1>
+  <h5><%= @article.body %></h5>
+
+  <% @comments.each do |comment| %>
+  <p><%= comment.author %></p>
+  <h4><%= comment.body %></h4>
+  <% end %>
+
+
+# this form route is a problem
+# also need to assign article_id foreign key to each comment
+<%= form_tag( "/articles/<%= @article.id %>/comments", method:'post') do %>
+  <input type='text' name='comment[author]' placeholder='author'>
+  <input type='text' name='comment[body]' placeholder='body'>
+  <input type='submit'>
+<% end %>
