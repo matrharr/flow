@@ -1,5 +1,5 @@
-
-<a href="articles/new" id='new_article'>Write a new post</a>
+<div id='new_article_form_container'>
+<a href="articles/new" id='new_article_link'>Write a new post</a>
 
 <% @articles.each do |article| %>
 
@@ -7,6 +7,5 @@
   <h3>by <%= article.author %></h3>
   <h5><%= article.body %></h5>
 <% end %>
-
-
+</div>
 

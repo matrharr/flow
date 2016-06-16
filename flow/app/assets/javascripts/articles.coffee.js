@@ -1,18 +1,18 @@
 $(document).ready(function(){
-  console.log("here")
-  $('#new_article').on('click', doThing)
+  $('#new_article_link').on('click', showForm)
+  $('#new_article_form_container').on('submit', '#new_article', submitForm)
 })
 
-var doThing = function(e){
+var showForm = function(e){
   e.preventDefault()
   var that = $(this)
   var url = that.attr('href')
-  // fix condition
-  that.toggleClass('open')
+
   if(that.hasClass('open')){
-    that.next().next().remove()
-    that.next().remove
+    that.next().remove()
+    that.toggleClass('open')
   }else{
+    that.toggleClass('open')
     $.ajax({
       url: url,
       method: 'GET'
@@ -20,4 +20,19 @@ var doThing = function(e){
       that.after(response)
     })
   }
- }
+}
+
+var submitForm = function(e){
+  e.preventDefault()
+  var that = $(this)
+  var data = that.serialize()
+  var url = that.attr('action')
+  $.ajax({
+    url: url,
+    data: data,
+    method: 'POST',
+    dataType: 'string'
+  }).done(function(response){
+    console.log(response)
+  })
+}
