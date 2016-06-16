@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
 
   def create
     comment = Comment.new(comment_params)
-    p params
+    p "*" * 80
+    p comment_params
     if comment.save
       redirect_to article_path(params[:article_id].to_i)
     end
