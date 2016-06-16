@@ -1,0 +1,14 @@
+<% @articles.each do |article| %>
+
+  <h1><a href='articles/<%= article.id %>'><%= article.title%></a></h1>
+  <h3>by <%= article.author %></h3>
+  <h5><%= article.body %></h5>
+<% end %>
+
+
+<%= form_tag do %>
+  <input type='text' name='article[author]' placeholder='author'>
+  <input type='text' name='article[title]' placeholder='title'>
+  <input type='text' name='article[body]' placeholder='body'>
+  <input type='submit'>
+<% end %>
