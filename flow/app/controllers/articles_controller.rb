@@ -11,15 +11,19 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    @article = Article.new
     if request.xhr?
       render "_form.html.erb", layout:false
     end
   end
 
   def create
-    article = Article.new(article_params)
-    if article.save
-      redirect_to articles_path
+    @article = Article.new(article_params)
+    if request.xhr?
+      if @article.save
+        p "8" * 80
+        return @article.to_json
+      end
     end
   end
 

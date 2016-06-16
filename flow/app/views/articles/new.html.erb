@@ -1,6 +1,6 @@
-<div id='new_article_container'>
+<div>
   <h2>Add a new article</h2>
-  <%= form_for @article, url: '/articles', method:'POST'  do |f| %>
+  <%= form_for @article, url: {action: "create", html: {class: "new_article_form"}} do |f| %>
     <%= f.text_field :author %>
     <%= f.text_field :title %>
     <%= f.text_field :body %>
