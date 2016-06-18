@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $('#new_article_link').on('click', showForm)
-  $('#new_article_form_container').on('submit', '#new_article', submitForm)
+  $('#new_article_container').on('submit', '#new_article', submitForm)
 })
 
 var showForm = function(e){
@@ -11,7 +11,9 @@ var showForm = function(e){
   if(that.hasClass('open')){
     that.next().remove()
     that.toggleClass('open')
+    that.html('<p>Write a new post</p>')
   }else{
+    that.html('<p>Close</p>')
     that.toggleClass('open')
     $.ajax({
       url: url,
@@ -30,9 +32,11 @@ var submitForm = function(e){
   $.ajax({
     url: url,
     data: data,
-    method: 'POST',
-    dataType: 'string'
+    method: 'POST'
   }).done(function(response){
-    console.log(response)
+    that.parent().after(response)
+    that.parent().remove()
+    $('#new_article_link').html('<p>Write a new post</p>')
+
   })
 }

@@ -1,4 +1,4 @@
-<div id='new_article_container'>
+<div id='new_article_form_container'>
   <h2>Add a new article</h2>
   <%= form_for @article, url: '/articles', method:'POST'  do |f| %>
     <%= f.text_field :author %>

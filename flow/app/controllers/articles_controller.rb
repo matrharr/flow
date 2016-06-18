@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all
+    @articles = Article.all.order('created_at DESC')
   end
 
 
@@ -18,12 +18,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = Article.create(article_params)
     if request.xhr?
-      if @article.save
-        p "8" * 80
-        return @article.to_json
-      end
+      p "%" * 80
+      render '_articles.html.erb', locals:{article:@article}, layout:false
     end
   end
 
