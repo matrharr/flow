@@ -1,9 +1,16 @@
 <div id='new_user_form_container'>
   <h2>Create an account</h2>
-  <%= form_for @user, url: '/users', method:'POST'  do |f| %>
-    <%= f.text_field :name %>
+  <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control'%>
+    <%= f.label :email %>
     <%= f.text_field :email %>
+    <%= f.label :password %>
     <%= f.text_field :password %>
-    <%= f.submit %>
+    <%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation %>
+    <%= f.submit "Create my account" %>
   <% end %>
+
 </div>

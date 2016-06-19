@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
+
+
   has_many :articles
   has_many :comments
 
-  attr_accessor :name, :email
 
   validates :name, presence:true, length: {maximum: 50}
 
@@ -13,7 +14,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
 
 
+  validates :password, presence: true, length: {minimum: 6}
   has_secure_password
-  validates :password, presence: true, length: {minumum: 6}
 
 end
