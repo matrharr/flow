@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
 
-  def login
-
-  end
-
   def new
     @user = User.new
   end
@@ -14,6 +10,7 @@ class UsersController < ApplicationController
     p "*"*100
     p @user
     if @user.save
+      log_in @user
       flash[:success] = "Welcome!"
       redirect_to @user
     else
