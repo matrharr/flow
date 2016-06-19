@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     p "*"*100
     p @user
     if @user.save
+      log_in @user
       flash[:success] = "Welcome!"
       redirect_to @user
     else
